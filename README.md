@@ -3,7 +3,7 @@
 This project implements a **manual SVD-based solver** to compute **currents in electrical circuits** using the matrix equation:
 
 \[
-A \cdot x = b
+A.x = b
 \]
 
 Where:  
@@ -40,13 +40,13 @@ Traditional inverse-based methods fail in these cases.
 SVD factorizes any matrix into:
 
 \[
-A = U \Sigma V^T
+A = UΣV^T
 \]
 
 From this, the **pseudoinverse** is computed as:
 
 \[
-A^+ = V \Sigma^+ U^T
+A^+ = VΣ^+U^T
 \]
 
 This guarantees:
@@ -109,25 +109,15 @@ The function `load_uf_matrix()` loads `.mtx` files and converts them to dense fo
 ### **2️⃣ Applying SVD**
 The solver manually computes:
 
-- \(A^T A\)
+- \(A^T.A\)
 - Eigenvalues → Singular values
 - Eigenvectors → U and V matrices
-- Pseudoinverse → \(A^+ = V \Sigma^+ U^T\)
+- Pseudoinverse → \(A^+ = VΣ^+U^T\)
 
 ### **3️⃣ Solving the Circuit**
 \[
-x = A^+ b
+x = A^+.b
 \]
-
-### **4️⃣ Checking Consistency**
-If:
-
-\[
-\| b - Ax \|_2 < 10^{-8}
-\]
-
-The system is **consistent**, otherwise **inconsistent**.
-
 ---
 
 ## 🧪 Test Matrices Included
